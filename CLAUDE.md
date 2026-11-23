@@ -6,7 +6,7 @@ Working instructions for this repository. Read this file first, then the documen
 
 An offline workbench for a coordinator who plans a week of synthetic meetings across time zones: load a scenario in Chrome, generate a schedule, see each person's local time and UTC offset and any dated conflict, save, restart and reproduce the result. Python 3.12 standard library, `127.0.0.1` only, staged time-zone data.
 
-**Nothing is implemented yet.** The repository holds the plan, the delivery tooling and the backlog in epic #1. Commands marked planned below do not work yet. Do not describe a planned thing as working, and do not claim a passing baseline: there is none.
+**Only the scaffold exists, with no product behaviour.** The repository holds the plan, the delivery tooling, the runnable package skeleton and the backlog in epic #1. Commands marked planned below do not work yet; `serve` and `solve` are stubs that exit non-zero. Do not describe a planned thing as working, and do not claim a passing baseline: there is none.
 
 ## Sources of truth
 
@@ -19,7 +19,7 @@ An offline workbench for a coordinator who plans a week of synthetic meetings ac
 | Project subagents, origin and local changes | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 | Ticket workflow and the step at which each role runs | [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md), section "Agent roles" below |
 | How a ticket goes from the queue to a ready pull request, who may do what | "Delivery workflow" below |
-| UI and copy rules | [docs/ui-quality.md](docs/ui-quality.md) |
+| UI and copy rules, design tokens | [docs/ui-quality.md](docs/ui-quality.md), [docs/design-tokens.md](docs/design-tokens.md) |
 | Decisions the owner made, with dates | [docs/owner-decisions.md](docs/owner-decisions.md) |
 
 The plan wins for product design; the epic and tickets win for order and scope. A ticket that changes a contract fixes the plan in the same pull request.
@@ -39,9 +39,9 @@ Python 3.12 or 3.13. No install step is needed.
 
 | Purpose | Command | Status |
 |---|---|---|
-| Tests | `python -m unittest discover -s tests` | planned: real with the scaffold |
-| Help and version | `python -m meeting_planner --help` | planned: real with the scaffold |
-| Run the app | `python -m meeting_planner serve --port 8765 --data-dir ./data` | planned: #2 and #5 |
+| Tests | `python -m unittest discover -s tests` | real (scaffold) |
+| Help and version | `python -m meeting_planner --help` | real (scaffold) |
+| Run the app | `python -m meeting_planner serve --port 8765 --data-dir ./data` | planned: #2, #5 and #6 |
 | Solve a scenario file | `python -m meeting_planner solve <scenario.json>` | planned: #4 |
 
 ## Architecture boundaries
@@ -54,7 +54,7 @@ The planned module map is in [docs/architecture.md](docs/architecture.md). Invar
 - Times are integer UTC minutes, intervals are half-open `[start,end)`, and inputs sit on the 15-minute grid. A series keeps the same local weekday and time in its anchor zone.
 - The four statuses `solved`, `infeasible`, `limit_reached` and `invalid_input` stay distinct. A search cutoff is never reported as infeasible.
 - Search order, options and results are stable: smallest remaining domain, then meeting ID; score is highest individual burden, then the sum, then the anchor-slot vector.
-- Caps are enforced before work: 15 participants, 40 meetings, 8 weeks, 20,000 candidate occurrences, 50,000 candidate visits, request size.
+- Caps: 15 participants, 40 meetings, 8 weeks and request size are checked before any work; 20,000 candidate occurrences are counted during generation and refused before the search starts; 50,000 candidate visits bound the search.
 - The server binds `127.0.0.1`, accepts writes only from its own origin with a JSON content type, and never builds a path from an HTTP value.
 - Save is an atomic replacement inside the app-owned data folder; a failed or invalid save keeps the previous file. A differing time-zone data version blocks silent reproduction.
 - User input is rendered with text nodes, never as HTML. Same-origin assets only, no telemetry.
@@ -115,7 +115,7 @@ How a ticket reaches the owner. Each piece is described in its own file; this pa
 - **Pull request:** [`.github/pull_request_template.md`](.github/pull_request_template.md). Tickets use [`.github/ISSUE_TEMPLATE/implementation-ticket.md`](.github/ISSUE_TEMPLATE/implementation-ticket.md).
 - **Labels:** `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`, `tracking` (parent container, never worked; its sub-issues are the work items).
 - **Changelog:** every ticket pull request adds one line under Unreleased in [CHANGELOG.md](CHANGELOG.md).
-- **UI and copy:** [docs/ui-quality.md](docs/ui-quality.md); the `ui-ux-pro-max` and `unslop` skills are in `.claude/skills/`.
+- **UI and copy:** [docs/ui-quality.md](docs/ui-quality.md); the `ui-ux-pro-max` and `unslop` skills are in `.claude/skills/`. Colours come from the shared design tokens in `meeting_planner/static/tokens.css` ([docs/design-tokens.md](docs/design-tokens.md)); new UI adds no colour literals.
 - **Decisions:** [docs/owner-decisions.md](docs/owner-decisions.md). Security reports: [SECURITY.md](SECURITY.md).
 - **Merge and release:** only the owner merges and releases ([docs/RELEASING.md](docs/RELEASING.md)). An agent stops at a ready pull request.
 
