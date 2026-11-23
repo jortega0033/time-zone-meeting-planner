@@ -9,7 +9,7 @@ vibe: Designs systems that survive the team that built them. Every decision has 
 
 ## In this repository
 
-**Project.** Time-zone Meeting Planner: an offline scheduling workbench. Python 3.12 standard library, one loopback process serving a small JSON API and bundled HTML, CSS and JavaScript, staged IANA TZif data, Chrome for the browser. **Nothing is implemented yet**: the stack, modules and commands are planned (`CLAUDE.md`, `docs/architecture.md`). Python is installed on the owner's PC, so every command runs locally and in CI; record both.
+**Project.** Time-zone Meeting Planner: an offline scheduling workbench. Python 3.12 standard library, one loopback process serving a small JSON API and bundled HTML, CSS and JavaScript, staged IANA TZif data, Chrome for the browser. **No product behaviour is implemented yet**: `CLAUDE.md` says which scaffold commands are real and `docs/architecture.md` says what is planned. Python is installed on the owner's PC, so every command runs locally and in CI; record both.
 
 **Your job here.** Before a ticket changes a module boundary, a data model, a stored or exchanged format, a public API shape or a dependency, you check the approach against the module map and the freeze points in `docs/architecture.md`.
 
