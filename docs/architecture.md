@@ -7,16 +7,19 @@ Status: **only the scaffold exists (module files with a responsibility comment, 
 | Boundary | Module | Owns | Parent ticket |
 |---|---|---|---|
 | Time data and conversion | `meeting_planner/zones.py` | Staged TZif registry, data version, local-to-UTC resolution, fold and gap results | #2 |
+| Staged time-zone data | `meeting_planner/tzdata/<release>/` | Compiled TZif files of the supported zones and their manifest | #2 |
 | Scenario contract | `meeting_planner/schema.py` | Schema version, field validation, error codes with field paths | #2 |
+| Starter fixtures | `meeting_planner/fixtures/` | Demo and blocked scenarios with their expected-result files | #2 |
 | Calendars | `meeting_planner/calendars.py` | Weekly windows, busy intervals, normalisation, half-open overlap | #3 |
 | Options | `meeting_planner/options.py` | Recurrence expansion, feasible occurrence vectors, burden, dated rejection examples | #3 |
 | Allocation | `meeting_planner/solver.py` | Bounded deterministic search, score, statuses, conflict evidence | #4 |
 | Storage | `meeting_planner/storage.py` | App-owned data folder, atomic replacement, import and export | #6 |
 | HTTP | `meeting_planner/server.py` | Loopback bind, request guards, routes, static assets | #2 (validation), #5, #6 |
+| Command line | `meeting_planner/cli.py` | Help, version, `serve` and `solve` commands | scaffold, #2 (serve), #4 (solve) |
 | Browser assets | `meeting_planner/static/` | Scenario selection, editor, agenda, conflict view | #5 |
 | Test oracle | `tests/oracle.py` | Exhaustive reference solver for tiny cases | #4 |
 
-Dependency direction: `server` depends on `schema`, `solver` and `storage`; `solver` on `options`; `options` on `calendars` and `zones`; `schema` on `zones`. `tests/oracle.py` imports nothing from the package.
+Dependency direction: `cli` depends on `server`, `solver` and `schema`; `server` on `zones`, `schema`, `solver` and `storage`; `storage` on `schema`; `solver` on `options` and `schema`; `options` on `calendars` and `zones`; `calendars` and `schema` on `zones`. `tests/oracle.py` imports nothing from the package.
 
 ## Freeze points
 

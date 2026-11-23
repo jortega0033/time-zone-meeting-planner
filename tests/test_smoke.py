@@ -6,9 +6,9 @@ import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
-import oracle  # noqa: F401  (tests/oracle.py, imports nothing from the package)
 from meeting_planner import __version__
 from meeting_planner.cli import main
+from tests import oracle  # noqa: F401  (imports nothing from the package)
 
 MODULES = ["zones", "schema", "calendars", "options", "solver", "storage", "server", "cli"]
 

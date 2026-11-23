@@ -41,7 +41,7 @@ Python 3.12 or 3.13. No install step is needed.
 |---|---|---|
 | Tests | `python -m unittest discover -s tests` | real (scaffold) |
 | Help and version | `python -m meeting_planner --help` | real (scaffold) |
-| Run the app | `python -m meeting_planner serve --port 8765 --data-dir ./data` | planned: #2 and #5 |
+| Run the app | `python -m meeting_planner serve --port 8765 --data-dir ./data` | planned: #2, #5 and #6 |
 | Solve a scenario file | `python -m meeting_planner solve <scenario.json>` | planned: #4 |
 
 ## Architecture boundaries
@@ -54,7 +54,7 @@ The planned module map is in [docs/architecture.md](docs/architecture.md). Invar
 - Times are integer UTC minutes, intervals are half-open `[start,end)`, and inputs sit on the 15-minute grid. A series keeps the same local weekday and time in its anchor zone.
 - The four statuses `solved`, `infeasible`, `limit_reached` and `invalid_input` stay distinct. A search cutoff is never reported as infeasible.
 - Search order, options and results are stable: smallest remaining domain, then meeting ID; score is highest individual burden, then the sum, then the anchor-slot vector.
-- Caps are enforced before work: 15 participants, 40 meetings, 8 weeks, 20,000 candidate occurrences, 50,000 candidate visits, request size.
+- Caps: 15 participants, 40 meetings, 8 weeks and request size are checked before any work; 20,000 candidate occurrences are counted during generation and refused before the search starts; 50,000 candidate visits bound the search.
 - The server binds `127.0.0.1`, accepts writes only from its own origin with a JSON content type, and never builds a path from an HTTP value.
 - Save is an atomic replacement inside the app-owned data folder; a failed or invalid save keeps the previous file. A differing time-zone data version blocks silent reproduction.
 - User input is rendered with text nodes, never as HTML. Same-origin assets only, no telemetry.

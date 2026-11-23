@@ -6,7 +6,7 @@ import sys
 from . import __version__
 
 # Command -> parent ticket that builds it.
-_PLANNED = {"serve": 5, "solve": 4}
+_PLANNED = {"serve": 2, "solve": 4}
 
 
 def build_parser() -> argparse.ArgumentParser:

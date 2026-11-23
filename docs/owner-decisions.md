@@ -33,4 +33,4 @@ The plan leaves these open. Each is a recommendation by the orchestrator, adopte
 | #5 | Editor scope | Add, change and remove participants, windows, busy periods and meetings with native form controls; no drag and drop. |
 | #6 | Data folder | `--data-dir`, default `./data` (git-ignored). Scenario names are 1 to 40 characters of letters, digits, hyphen and underscore. |
 | #7 | Two-second target | Measured and recorded in the QA notes, not asserted in a test; the visit budget is the repeatable guard. |
-| none | Licence | Not selected. No ticket depends on it and none adds a LICENSE. |
+| none | Licence | MIT: `LICENSE` was already on `main` before the kit. No ticket changes it. |
