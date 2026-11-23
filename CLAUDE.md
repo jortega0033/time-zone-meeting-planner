@@ -6,7 +6,7 @@ Working instructions for this repository. Read this file first, then the documen
 
 An offline workbench for a coordinator who plans a week of synthetic meetings across time zones: load a scenario in Chrome, generate a schedule, see each person's local time and UTC offset and any dated conflict, save, restart and reproduce the result. Python 3.12 standard library, `127.0.0.1` only, staged time-zone data.
 
-**Nothing is implemented yet.** The repository holds the plan, the delivery tooling and the backlog in epic #1. Commands marked planned below do not work yet. Do not describe a planned thing as working, and do not claim a passing baseline: there is none.
+**Only the scaffold exists, with no product behaviour.** The repository holds the plan, the delivery tooling, the runnable package skeleton and the backlog in epic #1. Commands marked planned below do not work yet; `serve` and `solve` are stubs that exit non-zero. Do not describe a planned thing as working, and do not claim a passing baseline: there is none.
 
 ## Sources of truth
 
@@ -39,8 +39,8 @@ Python 3.12 or 3.13. No install step is needed.
 
 | Purpose | Command | Status |
 |---|---|---|
-| Tests | `python -m unittest discover -s tests` | planned: real with the scaffold |
-| Help and version | `python -m meeting_planner --help` | planned: real with the scaffold |
+| Tests | `python -m unittest discover -s tests` | real (scaffold) |
+| Help and version | `python -m meeting_planner --help` | real (scaffold) |
 | Run the app | `python -m meeting_planner serve --port 8765 --data-dir ./data` | planned: #2 and #5 |
 | Solve a scenario file | `python -m meeting_planner solve <scenario.json>` | planned: #4 |
 
