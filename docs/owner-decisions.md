@@ -34,3 +34,13 @@ The plan leaves these open. Each is a recommendation by the orchestrator, adopte
 | #6 | Data folder | `--data-dir`, default `./data` (git-ignored). Scenario names are 1 to 40 characters of letters, digits, hyphen and underscore. |
 | #7 | Two-second target | Measured and recorded in the QA notes, not asserted in a test; the visit budget is the repeatable guard. |
 | none | Licence | MIT: `LICENSE` was already on `main` before the kit. No ticket changes it. |
+
+## Program decisions (owner, 2026-11-24)
+
+The owner accepted the goal and each suggestion below. They apply from the phase they name; the rules of `CLAUDE.md` hold for phase 1 as written.
+
+| Decision | Implemented in |
+|---|---|
+| The repository has a program goal above phase 1: an exact scheduling engine for whole organisations, in six phases. | Program issue #36 |
+| The idea sounds like a small app. Suggested: rename the submission to an exact scheduling engine. | Program issue #36 |
+| Calendar server needs a network. Suggested: loopback only. | Program issue #36 |

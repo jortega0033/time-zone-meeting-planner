@@ -1,5 +1,7 @@
 # Time-zone Meeting Planner
 
+> This document specifies phase 1 of the program in [#36](https://github.com/jortega0033/time-zone-meeting-planner/issues/36). Hour figures in it are early estimates for that phase; its open tickets add up to 60 to 93 hours (2026-11-24). Work that it defers is planned in the later phases only where the program names it.
+
 ## Product requirements
 
 A distributed team coordinator can plan a week of synthetic meetings and see which recurring times stay workable when clocks change. Load a scenario in Chrome, generate a schedule, inspect each person's local time and any conflicts, then save and reopen the scenario. Use a synthetic case with 40 meetings for 15 people across six zones as a stress fixture. The first release prioritizes a correct schedule on a smaller case with clear explanations for any unresolved meetings.
