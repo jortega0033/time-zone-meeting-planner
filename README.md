@@ -8,7 +8,7 @@ Implementation is planned. The scope, architecture and acceptance criteria are i
 - [Technical design](docs/PROJECT-PLAN.md#technical-design)
 - [Implementation backlog and epic](https://github.com/jortega0033/time-zone-meeting-planner/issues)
 
-Estimated implementation and verification effort is 17–29 engineering hours.
+The first plan of phase 1 said 17–29 engineering hours. Its open tickets, with tests and review, add up to 60 to 93 hours; the whole program is larger and is described below. All figures are estimates.
 
 ## Program goal
 
